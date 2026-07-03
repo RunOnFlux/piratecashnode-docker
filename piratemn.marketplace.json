@@ -1,0 +1,45 @@
+{
+  "description": "Host your PirateCash Masternode on the Flux Network (HA: 2 redundant nodes with automatic failover). Collateral: 10,000 PIRATE.",
+  "priceUSD": 7,
+  "category": "Masternode",
+  "version": 8,
+  "name": "PirateCashMN",
+  "instances": 2,
+  "staticip": true,
+  "compose": [
+    {
+      "name": "node",
+      "description": "The PirateCash Masternode container",
+      "repotag": "runonflux/piratecashnode:latest",
+      "containerPorts": [
+        63636
+      ],
+      "domains": [
+        ""
+      ],
+      "environmentParameters": [],
+      "commands": [],
+      "containerData": "/root/.piratecore",
+      "cpu": 2,
+      "ram": 4000,
+      "hdd": 40,
+      "ports": [
+        63636
+      ],
+      "userEnvironmentParameters": [
+        {
+          "name": "KEY",
+          "description": "Masternode operator BLS private key",
+          "placeholder": "Enter your operator BLS private key"
+        },
+        {
+          "name": "PROTXHASH",
+          "description": "Your masternode registration hash (proTxHash). Enables automatic on-chain IP updates so the node is never PoSe-banned after a relocation.",
+          "placeholder": "Enter your proTxHash"
+        }
+      ]
+    }
+  ],
+  "visible": true,
+  "enabled": true
+}
